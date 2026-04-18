@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: register-app-deployment
+spec: 
+  replicas: 2
+  selector: 
+    matchLabels:
+      app: register-app
+  template: 
+    metadata: 
+      labels: 
+        app: register-app
+    spec: 
+      containers: 
+        - name: register-app
+          image: sror/register-app-pipeline
+          ports: 
+            - containerPort: 8080
+          resources: 
+            limits: 
+              memory: "256Mi"
+              cpu: "500m"
+
+
+        
