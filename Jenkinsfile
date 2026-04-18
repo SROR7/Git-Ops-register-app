@@ -41,7 +41,7 @@ pipeline {
                       -H "cache-control: no-cache" \
                       -H "content-type: application/x-www-form-urlencoded" \
                       --data "IMAGE_TAG=1.0.0-51" \
-                      "http://ec2-51-20-65-24.eu-north-1.compute.amazonaws.com:8080/job/gitops-register-app-cd/buildWithParameters?token=gitops-token"
+                      "http://51.20.65.24:8080/job/gitops-register-app-cd/buildWithParameters?token=gitops-token"
                   '''
               }
           }
