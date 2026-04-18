@@ -14,7 +14,7 @@ spec:
     spec: 
       containers: 
         - name: register-app
-          image: sror/register-app-pipeline
+          image: sror/register-app-pipeline:latest
           ports: 
             - containerPort: 8080
           resources: 
