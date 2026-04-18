@@ -34,17 +34,15 @@ pipeline {
 
       stage("Push changes") {
           steps {
-              withCredentials([usernamePassword(credentialsId: 'GitHub', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                  sh """
-                    git config --global user.name "SROR7"
-                    git config --global user.email "m7mdsror0@gmail.com"
-
-                    git add deployment.yaml
-                    git commit -m "Updated Deployment Manifest" || echo "No changes to commit"
-
-                    git remote set-url origin https://$GIT_USERNAME:$GIT_PASSWORD@github.com/SROR7/Git-Ops-register-app
-                    git push origin main
-                  """
+              withCredentials([string(credentialsId: 'JENKINS_API_TOKEN', variable: 'TOKEN')]) {
+                  sh '''
+                      curl -v -k \
+                      -X POST \
+                      -H "cache-control: no-cache" \
+                      -H "content-type: application/x-www-form-urlencoded" \
+                      --data "IMAGE_TAG=1.0.0-50" \
+                      "http://ec2-13-60-104-242.eu-north-1.compute.amazonaws.com:8080/job/gitops-register-app-cd/buildWithParameters?token=gitops-token"
+                  '''
               }
           }
       }
