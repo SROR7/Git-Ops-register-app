@@ -35,7 +35,7 @@ pipeline {
             steps {
                 sh '''
                     cat deployment.yaml
-                    sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deployment.yaml
+                    sed -i "s/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g" deployment.yaml
                     cat deployment.yaml
                 '''
             }
@@ -48,17 +48,10 @@ pipeline {
                     passwordVariable: 'GIT_PASSWORD'
                 )]) {
                     sh '''
-                        git config user.name  "$GIT_USER_NAME"
-                        git config user.email "$GIT_USER_EMAIL"
-
+                        git config --global user.name "SROR7"
+                        git config --global user.email "m7mdsror0@gmail.com"
                         git add deployment.yaml
-
-                        if git diff --cached --quiet; then
-                            echo "No changes — tag already up to date"
-                        else
-                            git commit -m "ci: update image tag to ${IMAGE_TAG}"
-                            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/SROR7/Git-Ops-register-app HEAD:main
-                        fi
+                        git commit -m "Updated Deployment Manifest"
                     '''
                 }
             }
