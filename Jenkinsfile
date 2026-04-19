@@ -34,13 +34,9 @@ pipeline {
         stage('Update Deployment Tag') {
             steps {
                 sh '''
-                    echo "Before:"
-                    grep "image:" deployment.yaml
-
-                    sed -i "s|image: .*register-app-pipeline:.*|image: sror/register-app-pipeline:${IMAGE_TAG}|g" deployment.yaml
-
-                    echo "After:"
-                    grep "image:" deployment.yaml
+                    cat deployment.yaml
+                    sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deployment.yaml
+                    cat deployment.yaml
                 '''
             }
         }
