@@ -71,7 +71,7 @@ pipeline {
                             echo "No changes — tag already up to date"
                         else
                             git commit -m "ci: update image tag to ${IMAGE_TAG}"
-                            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@https://github.com/SROR7/Git-Ops-register-app.git HEAD:main
+                            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/SROR7/Git-Ops-register-app.git HEAD:main
                         fi
                     '''
                 }
