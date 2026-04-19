@@ -35,7 +35,7 @@ pipeline {
         stage('Checkout GitOps Repo') {
             steps {
                 git branch: 'main',
-                    credentialsId: 'github',
+                    credentialsId: 'GitHub',
                     url: "${GITOPS_REPO}"
             }
         }
@@ -57,7 +57,7 @@ pipeline {
         stage('Commit and Push') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: 'github',
+                    credentialsId: 'GitHub',
                     usernameVariable: 'GIT_USERNAME',
                     passwordVariable: 'GIT_PASSWORD'
                 )]) {
