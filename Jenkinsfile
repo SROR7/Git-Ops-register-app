@@ -8,7 +8,7 @@ pipeline {
     environment {
         APP_NAME       = 'register-app-pipeline'
         DOCKER_USER    = 'sror'
-        GITOPS_REPO    = 'https://github.com/Ashfaque-9x/gitops-register-app'
+        GITOPS_REPO    = 'https://github.com/SROR7/Git-Ops-register-app/'
         GIT_USER_NAME  = 'jenkins-bot'
         GIT_USER_EMAIL = 'jenkins@example.com'
     }
@@ -71,7 +71,7 @@ pipeline {
                             echo "No changes — tag already up to date"
                         else
                             git commit -m "ci: update image tag to ${IMAGE_TAG}"
-                            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Ashfaque-9x/gitops-register-app.git HEAD:main
+                            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@https://github.com/SROR7/Git-Ops-register-app.git HEAD:main
                         fi
                     '''
                 }
