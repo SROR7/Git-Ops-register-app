@@ -9,16 +9,6 @@ pipeline {
         GIT_USER_EMAIL = 'jenkins@example.com'
     }
     stages {
-        stage('Validate') {
-            steps {
-                script {
-                    if (!params.IMAGE_TAG?.trim()) {
-                        error "IMAGE_TAG was not passed from CI pipeline"
-                    }
-                    echo "Deploying: sror/register-app-pipeline:${params.IMAGE_TAG}"
-                }
-            }
-        }
         stage('CleanUp Workspace') {
             steps {
                 cleanWs()
