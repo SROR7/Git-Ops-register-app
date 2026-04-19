@@ -68,12 +68,4 @@ pipeline {
             }
         }
     }
-    post {
-        success {
-            echo "GitOps repo updated with tag ${params.IMAGE_TAG} — ArgoCD will sync"
-        }
-        failure {
-            echo "CD pipeline failed — deployment.yaml was NOT updated"
-        }
-    }
 }
